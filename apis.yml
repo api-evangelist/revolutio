@@ -6,10 +6,9 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - API
-  - Weather
-  - Hazard
   - Engineering
+  - Hazard
+  - Weather
 url: >-
   https://raw.githubusercontent.com/api-evangelist/revolutio/refs/heads/main/apis.yml
 created: '2025-02-17'
@@ -22,8 +21,7 @@ apis:
       Hazard API providing site-specific wind, snow, and ice data for structural
       engineering and construction projects.
     humanURL: https://www.revolutio.com.au/
-    tags:
-      - API
+    tags: []
     properties:
       - type: Documentation
         url: https://www.revolutio.com.au/
