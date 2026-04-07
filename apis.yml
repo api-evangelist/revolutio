@@ -1,5 +1,5 @@
 aid: revolutio
-name: revolutio
+name: Revolutio
 description: >-
   Hazard API providing site-specific wind, snow, and ice data for structural
   engineering and construction projects.
@@ -17,7 +17,7 @@ modified: '2026-03-16'
 specificationVersion: '0.19'
 apis:
   - aid: revolutio:revolutio
-    name: revolutio
+    name: Revolutio
     description: >-
       Hazard API providing site-specific wind, snow, and ice data for structural
       engineering and construction projects.
