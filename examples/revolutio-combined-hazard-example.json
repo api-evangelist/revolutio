@@ -1,0 +1,50 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.revolutio.com.au/asnzs1170/combined",
+    "headers": {
+      "apiKey": "YOUR_REVOLUTIO_API_KEY",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "latitude": -43.532,
+      "longitude": 172.6306,
+      "h": 20.0,
+      "units": "metric",
+      "advancedDetection": true
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "latitude": -43.532,
+      "longitude": 172.6306,
+      "country": "NZ",
+      "wind": {
+        "region": "A",
+        "class": "N3",
+        "criticalDirection": "SW",
+        "terrainCategory": {
+          "N": "TC2",
+          "SW": "TC1.5"
+        },
+        "windSpeed": 45.0,
+        "standard": "AS/NZS 1170.2-2021"
+      },
+      "snow": {
+        "snowRegion": "Alpine",
+        "snowElevationClass": "E2",
+        "snowGroundLoad": 1.5,
+        "iceRegion": "I2",
+        "standard": "AS/NZS 1170.3-2003"
+      },
+      "seismic": {
+        "hazardClass": "H3",
+        "siteClass": "D",
+        "kp": 1.0,
+        "standard": "NZS 1170.5-2004"
+      },
+      "creditsUsed": 1
+    }
+  }
+}

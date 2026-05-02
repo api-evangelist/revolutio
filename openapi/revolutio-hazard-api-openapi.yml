@@ -1,0 +1,510 @@
+openapi: 3.0.3
+info:
+  title: Revolutio Hazard API
+  description: >-
+    The Revolutio Hazard API (formerly CHECKWIND.API) provides site-specific
+    structural engineering hazard parameters for wind, snow, ice, and seismic
+    analysis. Trusted by over 750 companies across construction, fabrication,
+    power distribution, signage, structural engineering, and telecommunications,
+    the API returns location-based load parameters according to international
+    standards including AS/NZS 1170.2, AS 4055, ASCE 7, and others across 40+
+    countries in Oceania, Asia, the Middle East, North America, South America,
+    and Europe.
+  version: 4.0.0
+  contact:
+    url: https://www.revolutio.com.au/
+    email: support@revolutio.com.au
+  license:
+    name: Commercial
+    url: https://www.revolutio.com.au/software/hazardapi/
+servers:
+  - url: https://api.revolutio.com.au
+    description: Production
+tags:
+  - name: Wind
+    description: Site-specific wind hazard analysis per AS/NZS 1170.2 and ASCE 7 standards
+  - name: Snow And Ice
+    description: Snow and ice loading parameters per applicable standards
+  - name: Seismic
+    description: Seismic hazard parameters
+  - name: Combined Hazard
+    description: Multi-hazard combined analysis returning all available parameters for a site
+security:
+  - HazardApiKey: []
+components:
+  securitySchemes:
+    HazardApiKey:
+      type: apiKey
+      in: query
+      name: apiKey
+      description: Revolutio Hazard API subscription key. For POST requests pass in request header.
+  schemas:
+    SiteCoordinates:
+      type: object
+      required:
+        - latitude
+        - longitude
+      properties:
+        latitude:
+          type: number
+          format: double
+          description: Site latitude in decimal degrees
+          example: -33.8688
+        longitude:
+          type: number
+          format: double
+          description: Site longitude in decimal degrees
+          example: 151.2093
+        h:
+          type: number
+          format: double
+          description: Structure height above ground in metres (optional; omit for faster response)
+          example: 15.0
+        units:
+          type: string
+          enum:
+            - metric
+            - imperial
+          default: metric
+          description: Output units (metric or imperial)
+        advancedDetection:
+          type: boolean
+          default: true
+          description: Use machine learning terrain/exposure detection algorithm
+        googleApiKey:
+          type: string
+          description: Optional Google API key for elevation/geocoding data source
+
+    WindAnalysisResult:
+      type: object
+      properties:
+        region:
+          type: string
+          description: Wind region classification
+          example: "A0"
+        class:
+          type: string
+          description: Site wind class
+          example: "N1"
+        criticalDirection:
+          type: string
+          description: Critical wind direction
+          example: "N"
+        terrainCategory:
+          type: object
+          description: Directional terrain category results
+          additionalProperties:
+            type: string
+        topographicClass:
+          type: object
+          description: Directional topographic classification
+          additionalProperties:
+            type: string
+        shieldingClass:
+          type: object
+          description: Directional shielding classification
+          additionalProperties:
+            type: string
+        windSpeed:
+          type: number
+          format: double
+          description: Design wind speed in m/s (or mph if imperial)
+        standard:
+          type: string
+          description: Applied design standard
+          example: "AS/NZS 1170.2-2021"
+
+    SnowIceResult:
+      type: object
+      properties:
+        snowRegion:
+          type: string
+          description: Snow region classification
+        snowElevationClass:
+          type: string
+          description: Snow elevation class
+        snowGroundLoad:
+          type: number
+          format: double
+          description: Snow ground load in kPa
+        iceRegion:
+          type: string
+          description: Ice region classification
+        standard:
+          type: string
+          description: Applied design standard
+
+    SeismicResult:
+      type: object
+      properties:
+        hazardClass:
+          type: string
+          description: Seismic hazard class
+        siteClass:
+          type: string
+          description: Site subsoil class
+        kp:
+          type: number
+          format: double
+          description: Probability factor
+        standard:
+          type: string
+          description: Applied design standard
+
+    CombinedHazardResult:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        country:
+          type: string
+        wind:
+          $ref: '#/components/schemas/WindAnalysisResult'
+        snow:
+          $ref: '#/components/schemas/SnowIceResult'
+        ice:
+          $ref: '#/components/schemas/SnowIceResult'
+        seismic:
+          $ref: '#/components/schemas/SeismicResult'
+        creditsUsed:
+          type: integer
+          description: Number of API credits consumed by this request
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
+
+paths:
+  /asnzs1170/wind:
+    get:
+      operationId: getWindHazardGet
+      summary: Get Wind Hazard Analysis
+      description: >-
+        Returns site-specific wind hazard parameters according to AS/NZS 1170.2
+        for the specified coordinates. API key must be included as a query parameter.
+      tags:
+        - Wind
+      parameters:
+        - name: apiKey
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Revolutio Hazard API subscription key
+        - name: latitude
+          in: query
+          required: true
+          schema:
+            type: number
+          description: Site latitude in decimal degrees
+        - name: longitude
+          in: query
+          required: true
+          schema:
+            type: number
+          description: Site longitude in decimal degrees
+        - name: h
+          in: query
+          required: false
+          schema:
+            type: number
+          description: Structure height in metres
+        - name: units
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [metric, imperial]
+            default: metric
+          description: Output unit system
+        - name: advancedDetection
+          in: query
+          required: false
+          schema:
+            type: boolean
+            default: true
+          description: Enable ML-based terrain detection
+        - name: googleApiKey
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Optional Google API key for elevation data
+      responses:
+        '200':
+          description: Wind hazard analysis results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WindAnalysisResult'
+        '400':
+          description: Invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '429':
+          description: Rate limit exceeded or duplicate request in progress
+
+    post:
+      operationId: getWindHazardPost
+      summary: Post Wind Hazard Analysis
+      description: >-
+        Returns site-specific wind hazard parameters. POST method allows passing
+        the API key in the request header for better security.
+      tags:
+        - Wind
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SiteCoordinates'
+      responses:
+        '200':
+          description: Wind hazard analysis results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WindAnalysisResult'
+        '400':
+          description: Invalid parameters
+        '401':
+          description: Unauthorized
+
+  /asnzs1170/snow:
+    get:
+      operationId: getSnowHazardGet
+      summary: Get Snow Hazard Analysis
+      description: >-
+        Returns site-specific snow and ice loading parameters for the specified
+        coordinates according to applicable standards.
+      tags:
+        - Snow And Ice
+      parameters:
+        - name: apiKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: latitude
+          in: query
+          required: true
+          schema:
+            type: number
+        - name: longitude
+          in: query
+          required: true
+          schema:
+            type: number
+        - name: h
+          in: query
+          required: false
+          schema:
+            type: number
+        - name: units
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [metric, imperial]
+      responses:
+        '200':
+          description: Snow and ice hazard analysis results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnowIceResult'
+        '400':
+          description: Invalid parameters
+        '401':
+          description: Unauthorized
+
+    post:
+      operationId: getSnowHazardPost
+      summary: Post Snow Hazard Analysis
+      description: Returns site-specific snow and ice loading parameters via POST.
+      tags:
+        - Snow And Ice
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SiteCoordinates'
+      responses:
+        '200':
+          description: Snow and ice hazard results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnowIceResult'
+        '400':
+          description: Invalid parameters
+        '401':
+          description: Unauthorized
+
+  /asnzs1170/seismic:
+    get:
+      operationId: getSeismicHazardGet
+      summary: Get Seismic Hazard Analysis
+      description: >-
+        Returns site-specific seismic hazard parameters for the specified
+        coordinates.
+      tags:
+        - Seismic
+      parameters:
+        - name: apiKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: latitude
+          in: query
+          required: true
+          schema:
+            type: number
+        - name: longitude
+          in: query
+          required: true
+          schema:
+            type: number
+        - name: units
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [metric, imperial]
+      responses:
+        '200':
+          description: Seismic hazard analysis results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SeismicResult'
+        '400':
+          description: Invalid parameters
+        '401':
+          description: Unauthorized
+
+    post:
+      operationId: getSeismicHazardPost
+      summary: Post Seismic Hazard Analysis
+      description: Returns seismic hazard parameters via POST.
+      tags:
+        - Seismic
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SiteCoordinates'
+      responses:
+        '200':
+          description: Seismic hazard results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SeismicResult'
+        '400':
+          description: Invalid parameters
+        '401':
+          description: Unauthorized
+
+  /asnzs1170/combined:
+    get:
+      operationId: getCombinedHazardGet
+      summary: Get Combined Hazard Analysis
+      description: >-
+        Returns all available hazard parameters (wind, snow, ice, seismic) for
+        a given site in a single request. Recommended for comprehensive site
+        assessments.
+      tags:
+        - Combined Hazard
+      parameters:
+        - name: apiKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: latitude
+          in: query
+          required: true
+          schema:
+            type: number
+        - name: longitude
+          in: query
+          required: true
+          schema:
+            type: number
+        - name: h
+          in: query
+          required: false
+          schema:
+            type: number
+        - name: units
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [metric, imperial]
+        - name: advancedDetection
+          in: query
+          required: false
+          schema:
+            type: boolean
+            default: true
+        - name: googleApiKey
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Combined multi-hazard analysis results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CombinedHazardResult'
+        '400':
+          description: Invalid parameters
+        '401':
+          description: Unauthorized
+        '429':
+          description: Rate limit exceeded
+
+    post:
+      operationId: getCombinedHazardPost
+      summary: Post Combined Hazard Analysis
+      description: Returns all hazard parameters for a site via POST.
+      tags:
+        - Combined Hazard
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SiteCoordinates'
+      responses:
+        '200':
+          description: Combined multi-hazard analysis results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CombinedHazardResult'
+        '400':
+          description: Invalid parameters
+        '401':
+          description: Unauthorized

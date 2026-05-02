@@ -1,0 +1,54 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.revolutio.com.au/asnzs1170/wind",
+    "queryParameters": {
+      "apiKey": "YOUR_REVOLUTIO_API_KEY",
+      "latitude": "-33.8688",
+      "longitude": "151.2093",
+      "h": "15",
+      "units": "metric",
+      "advancedDetection": "true"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "region": "A0",
+      "class": "N2",
+      "criticalDirection": "SW",
+      "terrainCategory": {
+        "N": "TC3",
+        "NE": "TC3",
+        "E": "TC3",
+        "SE": "TC3",
+        "S": "TC2.5",
+        "SW": "TC2",
+        "W": "TC2.5",
+        "NW": "TC3"
+      },
+      "topographicClass": {
+        "N": "T2",
+        "NE": "T2",
+        "E": "T2",
+        "SE": "T2",
+        "S": "T2",
+        "SW": "T2",
+        "W": "T2",
+        "NW": "T2"
+      },
+      "shieldingClass": {
+        "N": "S2",
+        "NE": "S2",
+        "E": "S2",
+        "SE": "S2",
+        "S": "S2",
+        "SW": "S2",
+        "W": "S2",
+        "NW": "S2"
+      },
+      "windSpeed": 34.0,
+      "standard": "AS/NZS 1170.2-2021"
+    }
+  }
+}

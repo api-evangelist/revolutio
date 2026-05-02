@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/revolutio/main/json-schema/revolutio-wind-result-schema.json",
+  "title": "Revolutio Wind Hazard Analysis Result",
+  "description": "Wind hazard analysis result returned by the Revolutio Hazard API per AS/NZS 1170.2 or ASCE 7",
+  "type": "object",
+  "properties": {
+    "region": {
+      "type": "string",
+      "description": "Wind region classification (e.g., A0, A1, B, C, D)",
+      "example": "A0"
+    },
+    "class": {
+      "type": "string",
+      "description": "Site wind class (e.g., N1-N6, C1-C3)",
+      "example": "N1"
+    },
+    "criticalDirection": {
+      "type": "string",
+      "description": "Critical wind direction angle or compass point",
+      "example": "N"
+    },
+    "terrainCategory": {
+      "type": "object",
+      "description": "Directional terrain category for each wind direction",
+      "additionalProperties": { "type": "string" }
+    },
+    "topographicClass": {
+      "type": "object",
+      "description": "Directional topographic multiplier class",
+      "additionalProperties": { "type": "string" }
+    },
+    "shieldingClass": {
+      "type": "object",
+      "description": "Directional shielding multiplier class",
+      "additionalProperties": { "type": "string" }
+    },
+    "windSpeed": {
+      "type": "number",
+      "format": "double",
+      "description": "Design wind speed in m/s (metric) or mph (imperial)"
+    },
+    "standard": {
+      "type": "string",
+      "description": "Applied design standard",
+      "example": "AS/NZS 1170.2-2021"
+    }
+  }
+}

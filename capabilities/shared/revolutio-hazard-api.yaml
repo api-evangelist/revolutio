@@ -1,0 +1,296 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Revolutio Hazard API"
+  description: "Site-specific structural engineering hazard analysis API providing wind, snow, ice, and seismic parameters for 40+ countries."
+  tags:
+    - Revolutio
+    - Structural Engineering
+    - Wind Analysis
+    - Hazard API
+    - Construction
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      REVOLUTIO_API_KEY: REVOLUTIO_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: revolutio
+      baseUri: https://api.revolutio.com.au
+      description: "Revolutio Hazard API for site-specific wind, snow, ice, and seismic analysis"
+      authentication:
+        type: apikey
+        key: apiKey
+        value: "{{REVOLUTIO_API_KEY}}"
+        placement: query
+      resources:
+        - name: wind-analysis
+          path: /asnzs1170/wind
+          description: "Wind hazard analysis per AS/NZS 1170.2 and ASCE 7"
+          operations:
+            - name: get-wind-hazard
+              method: GET
+              description: "Get site-specific wind hazard parameters"
+              inputParameters:
+                - name: latitude
+                  in: query
+                  type: number
+                  required: true
+                  description: "Site latitude in decimal degrees"
+                - name: longitude
+                  in: query
+                  type: number
+                  required: true
+                  description: "Site longitude in decimal degrees"
+                - name: h
+                  in: query
+                  type: number
+                  required: false
+                  description: "Structure height in metres"
+                - name: units
+                  in: query
+                  type: string
+                  required: false
+                  description: "Output units: metric or imperial"
+                - name: advancedDetection
+                  in: query
+                  type: boolean
+                  required: false
+                  description: "Enable ML terrain detection"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: snow-analysis
+          path: /asnzs1170/snow
+          description: "Snow and ice loading analysis"
+          operations:
+            - name: get-snow-hazard
+              method: GET
+              description: "Get site-specific snow and ice loading parameters"
+              inputParameters:
+                - name: latitude
+                  in: query
+                  type: number
+                  required: true
+                  description: "Site latitude in decimal degrees"
+                - name: longitude
+                  in: query
+                  type: number
+                  required: true
+                  description: "Site longitude in decimal degrees"
+                - name: h
+                  in: query
+                  type: number
+                  required: false
+                  description: "Structure height in metres"
+                - name: units
+                  in: query
+                  type: string
+                  required: false
+                  description: "Output units: metric or imperial"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: seismic-analysis
+          path: /asnzs1170/seismic
+          description: "Seismic hazard analysis"
+          operations:
+            - name: get-seismic-hazard
+              method: GET
+              description: "Get site-specific seismic hazard parameters"
+              inputParameters:
+                - name: latitude
+                  in: query
+                  type: number
+                  required: true
+                  description: "Site latitude in decimal degrees"
+                - name: longitude
+                  in: query
+                  type: number
+                  required: true
+                  description: "Site longitude in decimal degrees"
+                - name: units
+                  in: query
+                  type: string
+                  required: false
+                  description: "Output units: metric or imperial"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: combined-hazard
+          path: /asnzs1170/combined
+          description: "Combined multi-hazard analysis"
+          operations:
+            - name: get-combined-hazard
+              method: GET
+              description: "Get all hazard parameters (wind, snow, ice, seismic) for a site"
+              inputParameters:
+                - name: latitude
+                  in: query
+                  type: number
+                  required: true
+                  description: "Site latitude in decimal degrees"
+                - name: longitude
+                  in: query
+                  type: number
+                  required: true
+                  description: "Site longitude in decimal degrees"
+                - name: h
+                  in: query
+                  type: number
+                  required: false
+                  description: "Structure height in metres"
+                - name: units
+                  in: query
+                  type: string
+                  required: false
+                  description: "Output units: metric or imperial"
+                - name: advancedDetection
+                  in: query
+                  type: boolean
+                  required: false
+                  description: "Enable ML terrain detection"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: revolutio-api
+      resources:
+        - path: /v1/wind
+          name: wind-hazard
+          description: "Wind hazard analysis"
+          operations:
+            - method: GET
+              name: get-wind-hazard
+              description: "Get wind hazard parameters for a site"
+              call: "revolutio.get-wind-hazard"
+              with:
+                latitude: "rest.latitude"
+                longitude: "rest.longitude"
+                h: "rest.h"
+                units: "rest.units"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/snow
+          name: snow-hazard
+          description: "Snow and ice loading analysis"
+          operations:
+            - method: GET
+              name: get-snow-hazard
+              description: "Get snow and ice loading parameters for a site"
+              call: "revolutio.get-snow-hazard"
+              with:
+                latitude: "rest.latitude"
+                longitude: "rest.longitude"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/seismic
+          name: seismic-hazard
+          description: "Seismic hazard analysis"
+          operations:
+            - method: GET
+              name: get-seismic-hazard
+              description: "Get seismic parameters for a site"
+              call: "revolutio.get-seismic-hazard"
+              with:
+                latitude: "rest.latitude"
+                longitude: "rest.longitude"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/combined
+          name: combined-hazard
+          description: "Combined multi-hazard analysis"
+          operations:
+            - method: GET
+              name: get-combined-hazard
+              description: "Get all hazard parameters for a site"
+              call: "revolutio.get-combined-hazard"
+              with:
+                latitude: "rest.latitude"
+                longitude: "rest.longitude"
+                h: "rest.h"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: revolutio-mcp
+      transport: http
+      tools:
+        - name: get-wind-hazard
+          description: "Get site-specific wind hazard parameters by latitude/longitude"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "revolutio.get-wind-hazard"
+          with:
+            latitude: "tools.latitude"
+            longitude: "tools.longitude"
+            h: "tools.h"
+            units: "tools.units"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-snow-hazard
+          description: "Get site-specific snow and ice loading parameters"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "revolutio.get-snow-hazard"
+          with:
+            latitude: "tools.latitude"
+            longitude: "tools.longitude"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-seismic-hazard
+          description: "Get site-specific seismic hazard parameters"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "revolutio.get-seismic-hazard"
+          with:
+            latitude: "tools.latitude"
+            longitude: "tools.longitude"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-combined-hazard
+          description: "Get all hazard parameters (wind, snow, ice, seismic) for a site in one call"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "revolutio.get-combined-hazard"
+          with:
+            latitude: "tools.latitude"
+            longitude: "tools.longitude"
+            h: "tools.h"
+          outputParameters:
+            - type: object
+              mapping: "$."

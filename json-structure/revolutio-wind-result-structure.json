@@ -1,0 +1,15 @@
+{
+  "title": "Revolutio Wind Hazard Result Structure",
+  "description": "Field documentation for the Revolutio Hazard API wind analysis response",
+  "type": "object",
+  "fields": [
+    { "name": "region", "type": "string", "required": false, "description": "Wind region classification (e.g., A0, B, C, D)" },
+    { "name": "class", "type": "string", "required": false, "description": "Site wind class (e.g., N1-N6)" },
+    { "name": "criticalDirection", "type": "string", "required": false, "description": "Critical wind direction" },
+    { "name": "terrainCategory", "type": "object", "required": false, "description": "Directional terrain categories (keyed by direction)" },
+    { "name": "topographicClass", "type": "object", "required": false, "description": "Directional topographic classes" },
+    { "name": "shieldingClass", "type": "object", "required": false, "description": "Directional shielding classes" },
+    { "name": "windSpeed", "type": "number", "required": false, "description": "Design wind speed in m/s or mph" },
+    { "name": "standard", "type": "string", "required": false, "description": "Applied design standard" }
+  ]
+}

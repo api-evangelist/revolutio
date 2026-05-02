@@ -1,0 +1,43 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+    "rev": "https://www.revolutio.com.au/vocab/",
+
+    "latitude": "geo:lat",
+    "longitude": "geo:long",
+    "h": "rev:structureHeight",
+    "units": "rev:units",
+
+    "WindAnalysisResult": "rev:WindAnalysisResult",
+    "region": "rev:windRegion",
+    "class": "rev:windClass",
+    "criticalDirection": "rev:criticalDirection",
+    "terrainCategory": "rev:terrainCategory",
+    "topographicClass": "rev:topographicClass",
+    "shieldingClass": "rev:shieldingClass",
+    "windSpeed": "rev:windSpeed",
+
+    "SnowIceResult": "rev:SnowIceResult",
+    "snowRegion": "rev:snowRegion",
+    "snowElevationClass": "rev:snowElevationClass",
+    "snowGroundLoad": "rev:snowGroundLoad",
+    "iceRegion": "rev:iceRegion",
+
+    "SeismicResult": "rev:SeismicResult",
+    "hazardClass": "rev:seismicHazardClass",
+    "siteClass": "rev:seismicSiteClass",
+    "kp": "rev:probabilityFactor",
+
+    "CombinedHazardResult": "rev:CombinedHazardResult",
+    "wind": "rev:windAnalysis",
+    "snow": "rev:snowAnalysis",
+    "ice": "rev:iceAnalysis",
+    "seismic": "rev:seismicAnalysis",
+    "creditsUsed": "rev:creditsUsed",
+
+    "standard": "rev:designStandard",
+    "country": "schema:addressCountry"
+  }
+}

@@ -1,0 +1,74 @@
+rules:
+  revolutio-operation-id-camel-case:
+    description: All operationIds must use camelCase format
+    severity: warn
+    given: "$.paths.*.*"
+    then:
+      field: operationId
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  revolutio-tags-title-case:
+    description: All tags must use Title Case
+    severity: warn
+    given: "$.tags[*].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9 /]*$"
+
+  revolutio-api-key-required:
+    description: All GET endpoints must include apiKey as a query parameter
+    severity: error
+    given: "$.paths.*.get.parameters[?(@.name == 'apiKey')]"
+    then:
+      field: required
+      function: truthy
+
+  revolutio-coordinates-required:
+    description: All hazard analysis endpoints must include latitude and longitude parameters
+    severity: error
+    given: "$.paths.*.get"
+    then:
+      field: parameters
+      function: truthy
+
+  revolutio-get-post-parity:
+    description: Hazard API endpoints must offer both GET and POST variants
+    severity: warn
+    given: "$.paths.*"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          properties:
+            get:
+              type: object
+            post:
+              type: object
+
+  revolutio-response-schema-defined:
+    description: All 200 responses must define a content schema
+    severity: error
+    given: "$.paths.*.*.responses.200.content"
+    then:
+      function: truthy
+
+  revolutio-no-trailing-slash:
+    description: API paths must not end with a trailing slash
+    severity: warn
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "\\/$"
+
+  revolutio-snake-case-query-params:
+    description: Query parameter names should use camelCase for consistency with API convention
+    severity: info
+    given: "$.paths.*.*.parameters[?(@.in == 'query')].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"

@@ -1,0 +1,134 @@
+vocabulary:
+  name: Revolutio Hazard API Vocabulary
+  description: >-
+    Terminology and domain concepts for structural engineering hazard analysis
+    using the Revolutio Hazard API.
+  version: "1.0.0"
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+terms:
+  - term: Wind Region
+    definition: >-
+      A geographic classification that defines basic wind speed for a location
+      per the applicable design standard (e.g., Region A0, A1, B, C, D in AS/NZS 1170.2).
+
+  - term: Wind Class
+    definition: >-
+      A summary site wind classification combining region, terrain, and topographic
+      effects (e.g., N1–N6 for non-cyclonic, C1–C3 for cyclonic in AS 4055).
+
+  - term: Terrain Category
+    definition: >-
+      Classification of the ground surface roughness and obstacle height surrounding
+      a site, affecting wind speed profiles (TC1 to TC4 in AS/NZS 1170.2).
+
+  - term: Topographic Class
+    definition: >-
+      Classification of local topographic features (hills, ridges, escarpments)
+      that accelerate wind at a site. Ranges from T1 to T5.
+
+  - term: Shielding Class
+    definition: >-
+      Classification indicating the degree of shelter provided by surrounding
+      structures (S1 to S3 in AS 4055).
+
+  - term: Critical Direction
+    definition: >-
+      The wind direction that produces the highest structural loading at a site,
+      determined by combining regional wind speed with directional terrain effects.
+
+  - term: Design Wind Speed
+    definition: >-
+      The maximum wind speed used in structural design calculations, expressed in
+      m/s (metric) or mph (imperial).
+
+  - term: Snow Region
+    definition: >-
+      Geographic classification defining snow load levels for a location per
+      applicable standards (e.g., Sub-alpine, Alpine).
+
+  - term: Snow Elevation Class
+    definition: >-
+      Classification based on site elevation relative to snow load reference datum.
+
+  - term: Snow Ground Load
+    definition: >-
+      The characteristic snow load at ground level in kPa for the site location.
+
+  - term: Ice Region
+    definition: >-
+      Classification indicating exposure to ice accretion from freezing rain or rime.
+
+  - term: Seismic Hazard Class
+    definition: >-
+      Classification of seismic hazard level at a site (H1–H3 per NZS; A–E per ASCE 7).
+
+  - term: Site Class
+    definition: >-
+      Geotechnical soil/rock classification affecting seismic response (A–E).
+
+  - term: Probability Factor (kp)
+    definition: >-
+      Factor adjusting hazard parameters for design life and annual probability
+      of exceedance per AS/NZS 1170.0.
+
+  - term: Credit
+    definition: >-
+      Unit of API usage consumption. One credit is used per successful request.
+      Purchased as a monthly subscription bundle.
+
+  - term: Advanced Detection
+    description: >-
+      Machine learning algorithm option that improves terrain/exposure classification
+      accuracy over traditional lookup methods.
+
+  - term: AS/NZS 1170.2
+    definition: >-
+      Australian/New Zealand Standard for structural design actions - wind actions.
+      The primary standard for wind load determination in the region.
+
+  - term: AS 4055
+    definition: >-
+      Australian Standard for wind loads on housing, providing simplified site
+      wind classifications (N1–N6, C1–C3) derived from AS/NZS 1170.2.
+
+  - term: ASCE 7
+    definition: >-
+      American Society of Civil Engineers standard for minimum design loads and
+      associated criteria for buildings and other structures.
+
+categories:
+  - name: Wind Analysis
+    terms:
+      - Wind Region
+      - Wind Class
+      - Terrain Category
+      - Topographic Class
+      - Shielding Class
+      - Critical Direction
+      - Design Wind Speed
+
+  - name: Snow And Ice
+    terms:
+      - Snow Region
+      - Snow Elevation Class
+      - Snow Ground Load
+      - Ice Region
+
+  - name: Seismic
+    terms:
+      - Seismic Hazard Class
+      - Site Class
+      - Probability Factor (kp)
+
+  - name: API Usage
+    terms:
+      - Credit
+      - Advanced Detection
+
+  - name: Design Standards
+    terms:
+      - AS/NZS 1170.2
+      - AS 4055
+      - ASCE 7
