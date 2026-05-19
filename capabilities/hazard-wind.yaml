@@ -1,0 +1,155 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Revolutio Hazard API — Wind
+  description: 'Revolutio Hazard API — Wind. 2 operations. Lead operation: Get Wind Hazard Analysis. Self-contained Naftiko
+    capability covering one Revolutio business surface.'
+  tags:
+  - Revolutio
+  - Wind
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    REVOLUTIO_API_KEY: REVOLUTIO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: hazard-wind
+    baseUri: https://api.revolutio.com.au
+    description: Revolutio Hazard API — Wind business capability. Self-contained, no shared references.
+    resources:
+    - name: asnzs1170-wind
+      path: /asnzs1170/wind
+      operations:
+      - name: getwindhazardget
+        method: GET
+        description: Get Wind Hazard Analysis
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiKey
+          in: query
+          type: string
+          description: Your Revolutio Hazard API subscription key
+          required: true
+        - name: latitude
+          in: query
+          type: number
+          description: Site latitude in decimal degrees
+          required: true
+        - name: longitude
+          in: query
+          type: number
+          description: Site longitude in decimal degrees
+          required: true
+        - name: h
+          in: query
+          type: number
+          description: Structure height in metres
+        - name: units
+          in: query
+          type: string
+          description: Output unit system
+        - name: advancedDetection
+          in: query
+          type: boolean
+          description: Enable ML-based terrain detection
+        - name: googleApiKey
+          in: query
+          type: string
+          description: Optional Google API key for elevation data
+      - name: getwindhazardpost
+        method: POST
+        description: Post Wind Hazard Analysis
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: apiKey
+      value: '{{env.REVOLUTIO_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: hazard-wind-rest
+    port: 8080
+    description: REST adapter for Revolutio Hazard API — Wind. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/asnzs1170/wind
+      name: asnzs1170-wind
+      description: REST surface for asnzs1170-wind.
+      operations:
+      - method: GET
+        name: getwindhazardget
+        description: Get Wind Hazard Analysis
+        call: hazard-wind.getwindhazardget
+        with:
+          apiKey: rest.apiKey
+          latitude: rest.latitude
+          longitude: rest.longitude
+          h: rest.h
+          units: rest.units
+          advancedDetection: rest.advancedDetection
+          googleApiKey: rest.googleApiKey
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: getwindhazardpost
+        description: Post Wind Hazard Analysis
+        call: hazard-wind.getwindhazardpost
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: hazard-wind-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Revolutio Hazard API — Wind. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-wind-hazard-analysis
+      description: Get Wind Hazard Analysis
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: hazard-wind.getwindhazardget
+      with:
+        apiKey: tools.apiKey
+        latitude: tools.latitude
+        longitude: tools.longitude
+        h: tools.h
+        units: tools.units
+        advancedDetection: tools.advancedDetection
+        googleApiKey: tools.googleApiKey
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-wind-hazard-analysis
+      description: Post Wind Hazard Analysis
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: hazard-wind.getwindhazardpost
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
