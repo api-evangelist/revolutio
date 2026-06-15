@@ -1,0 +1,1949 @@
+{
+  "item": [
+    {
+      "id": "20c87d9d-26c3-499b-89b1-cb58f1006370",
+      "name": "Wind",
+      "description": {
+        "content": "Site-specific wind hazard analysis per AS/NZS 1170.2 and ASCE 7 standards",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c596a26e-f9d7-4278-b31d-4502172963f1",
+          "name": "Get Wind Hazard Analysis",
+          "request": {
+            "name": "Get Wind Hazard Analysis",
+            "description": {
+              "content": "Returns site-specific wind hazard parameters according to AS/NZS 1170.2 for the specified coordinates. API key must be included as a query parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "asnzs1170",
+                "wind"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "apiKey",
+                  "value": "<string>",
+                  "description": "(Required) Your Revolutio Hazard API subscription key"
+                },
+                {
+                  "disabled": false,
+                  "key": "latitude",
+                  "value": "<number>",
+                  "description": "(Required) Site latitude in decimal degrees"
+                },
+                {
+                  "disabled": false,
+                  "key": "longitude",
+                  "value": "<number>",
+                  "description": "(Required) Site longitude in decimal degrees"
+                },
+                {
+                  "disabled": false,
+                  "key": "h",
+                  "value": "<number>",
+                  "description": "Structure height in metres"
+                },
+                {
+                  "disabled": false,
+                  "key": "units",
+                  "value": "metric",
+                  "description": "Output unit system"
+                },
+                {
+                  "disabled": false,
+                  "key": "advancedDetection",
+                  "value": "true",
+                  "description": "Enable ML-based terrain detection"
+                },
+                {
+                  "disabled": false,
+                  "key": "googleApiKey",
+                  "value": "<string>",
+                  "description": "Optional Google API key for elevation data"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e81938e0-86ac-4211-a98e-11bbf74ed75d",
+              "name": "Wind hazard analysis results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asnzs1170",
+                    "wind"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "h",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "units",
+                      "value": "metric"
+                    },
+                    {
+                      "key": "advancedDetection",
+                      "value": "true"
+                    },
+                    {
+                      "key": "googleApiKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"region\": \"A0\",\n  \"class\": \"N1\",\n  \"criticalDirection\": \"N\",\n  \"terrainCategory\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"topographicClass\": {\n    \"key_0\": \"string\"\n  },\n  \"shieldingClass\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"windSpeed\": 92.58584845588614,\n  \"standard\": \"AS/NZS 1170.2-2021\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "139a60fd-ef1d-4344-a5b8-dafee1c37905",
+              "name": "Invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asnzs1170",
+                    "wind"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "h",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "units",
+                      "value": "metric"
+                    },
+                    {
+                      "key": "advancedDetection",
+                      "value": "true"
+                    },
+                    {
+                      "key": "googleApiKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"code\": 5590\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8cc233b-95f2-4a5d-b2c9-dd839e0b5586",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asnzs1170",
+                    "wind"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "h",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "units",
+                      "value": "metric"
+                    },
+                    {
+                      "key": "advancedDetection",
+                      "value": "true"
+                    },
+                    {
+                      "key": "googleApiKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b5bd2054-a5b2-4a37-805e-6792110a6143",
+              "name": "Rate limit exceeded or duplicate request in progress",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asnzs1170",
+                    "wind"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "h",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "units",
+                      "value": "metric"
+                    },
+                    {
+                      "key": "advancedDetection",
+                      "value": "true"
+                    },
+                    {
+                      "key": "googleApiKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4b832ff0-09fb-493f-b83a-05c480d59330",
+          "name": "Post Wind Hazard Analysis",
+          "request": {
+            "name": "Post Wind Hazard Analysis",
+            "description": {
+              "content": "Returns site-specific wind hazard parameters. POST method allows passing the API key in the request header for better security.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "asnzs1170",
+                "wind"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"latitude\": \"<double>\",\n  \"longitude\": \"<double>\",\n  \"h\": \"<double>\",\n  \"units\": \"metric\",\n  \"advancedDetection\": true,\n  \"googleApiKey\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5e3d2443-3288-4e96-b265-298f1c3ebe75",
+              "name": "Wind hazard analysis results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asnzs1170",
+                    "wind"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"latitude\": -33.8688,\n  \"longitude\": 151.2093,\n  \"h\": 15,\n  \"units\": \"metric\",\n  \"advancedDetection\": true,\n  \"googleApiKey\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"region\": \"A0\",\n  \"class\": \"N1\",\n  \"criticalDirection\": \"N\",\n  \"terrainCategory\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"topographicClass\": {\n    \"key_0\": \"string\"\n  },\n  \"shieldingClass\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"windSpeed\": 92.58584845588614,\n  \"standard\": \"AS/NZS 1170.2-2021\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b242be80-506d-41a3-ad38-f7b92c40703b",
+              "name": "Invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asnzs1170",
+                    "wind"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"latitude\": -33.8688,\n  \"longitude\": 151.2093,\n  \"h\": 15,\n  \"units\": \"metric\",\n  \"advancedDetection\": true,\n  \"googleApiKey\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6874e4c3-47dd-4597-9971-3fb4c7c5fa47",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asnzs1170",
+                    "wind"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"latitude\": -33.8688,\n  \"longitude\": 151.2093,\n  \"h\": 15,\n  \"units\": \"metric\",\n  \"advancedDetection\": true,\n  \"googleApiKey\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "63e8ef21-16ae-44fe-bd34-56c982183df0",
+      "name": "Snow And Ice",
+      "description": {
+        "content": "Snow and ice loading parameters per applicable standards",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f8a93d38-957c-4536-a7e4-847a2a9bafe8",
+          "name": "Get Snow Hazard Analysis",
+          "request": {
+            "name": "Get Snow Hazard Analysis",
+            "description": {
+              "content": "Returns site-specific snow and ice loading parameters for the specified coordinates according to applicable standards.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "asnzs1170",
+                "snow"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "apiKey",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "latitude",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "longitude",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "h",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "units",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f74c1f03-29ae-41dd-9b35-19b131021f6b",
+              "name": "Snow and ice hazard analysis results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asnzs1170",
+                    "snow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "h",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "units",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"snowRegion\": \"string\",\n  \"snowElevationClass\": \"string\",\n  \"snowGroundLoad\": 1476.1134499600148,\n  \"iceRegion\": \"string\",\n  \"standard\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f2c1762-5ad9-4d4f-9329-4054e327d160",
+              "name": "Invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asnzs1170",
+                    "snow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "h",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "units",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "38b90b33-7616-4b4e-87a2-c0e81d11fce1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asnzs1170",
+                    "snow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "h",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "units",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a48e3ccd-8cf2-4b5d-b96c-deee0a0cbb22",
+          "name": "Post Snow Hazard Analysis",
+          "request": {
+            "name": "Post Snow Hazard Analysis",
+            "description": {
+              "content": "Returns site-specific snow and ice loading parameters via POST.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "asnzs1170",
+                "snow"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"latitude\": \"<double>\",\n  \"longitude\": \"<double>\",\n  \"h\": \"<double>\",\n  \"units\": \"metric\",\n  \"advancedDetection\": true,\n  \"googleApiKey\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3b7cea93-4a98-4cf3-8900-ee5601dea2ff",
+              "name": "Snow and ice hazard results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asnzs1170",
+                    "snow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"latitude\": -33.8688,\n  \"longitude\": 151.2093,\n  \"h\": 15,\n  \"units\": \"metric\",\n  \"advancedDetection\": true,\n  \"googleApiKey\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"snowRegion\": \"string\",\n  \"snowElevationClass\": \"string\",\n  \"snowGroundLoad\": 1476.1134499600148,\n  \"iceRegion\": \"string\",\n  \"standard\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76de666a-70e4-4767-bfd3-6ad64ebf364e",
+              "name": "Invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asnzs1170",
+                    "snow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"latitude\": -33.8688,\n  \"longitude\": 151.2093,\n  \"h\": 15,\n  \"units\": \"metric\",\n  \"advancedDetection\": true,\n  \"googleApiKey\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b672bc23-2011-4b05-b0d6-92e4b2f65bd1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asnzs1170",
+                    "snow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"latitude\": -33.8688,\n  \"longitude\": 151.2093,\n  \"h\": 15,\n  \"units\": \"metric\",\n  \"advancedDetection\": true,\n  \"googleApiKey\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d79f3849-2801-4a5a-b037-80dd72ce26e9",
+      "name": "Seismic",
+      "description": {
+        "content": "Seismic hazard parameters",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0bd262e7-d53a-4152-ac05-2a1fbaa7f202",
+          "name": "Get Seismic Hazard Analysis",
+          "request": {
+            "name": "Get Seismic Hazard Analysis",
+            "description": {
+              "content": "Returns site-specific seismic hazard parameters for the specified coordinates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "asnzs1170",
+                "seismic"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "apiKey",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "latitude",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "longitude",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "units",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2fe56081-8110-434e-bdb4-b3d1edd5fd95",
+              "name": "Seismic hazard analysis results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asnzs1170",
+                    "seismic"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "units",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"hazardClass\": \"string\",\n  \"siteClass\": \"string\",\n  \"kp\": 89.36980277165718,\n  \"standard\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb86767f-5364-47dd-aee8-e58e96deded4",
+              "name": "Invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asnzs1170",
+                    "seismic"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "units",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0e65d331-c7f6-4d24-ac57-0ef991a5e6c3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asnzs1170",
+                    "seismic"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "units",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe3356d3-f518-4551-8987-9e9f70ddce14",
+          "name": "Post Seismic Hazard Analysis",
+          "request": {
+            "name": "Post Seismic Hazard Analysis",
+            "description": {
+              "content": "Returns seismic hazard parameters via POST.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "asnzs1170",
+                "seismic"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"latitude\": \"<double>\",\n  \"longitude\": \"<double>\",\n  \"h\": \"<double>\",\n  \"units\": \"metric\",\n  \"advancedDetection\": true,\n  \"googleApiKey\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d25ac27d-083a-4510-9ed1-cbbef767c282",
+              "name": "Seismic hazard results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asnzs1170",
+                    "seismic"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"latitude\": -33.8688,\n  \"longitude\": 151.2093,\n  \"h\": 15,\n  \"units\": \"metric\",\n  \"advancedDetection\": true,\n  \"googleApiKey\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"hazardClass\": \"string\",\n  \"siteClass\": \"string\",\n  \"kp\": 89.36980277165718,\n  \"standard\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "241644d8-696c-42ce-94d2-2d6eae34e3d1",
+              "name": "Invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asnzs1170",
+                    "seismic"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"latitude\": -33.8688,\n  \"longitude\": 151.2093,\n  \"h\": 15,\n  \"units\": \"metric\",\n  \"advancedDetection\": true,\n  \"googleApiKey\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3386e6f9-d9bd-4ba7-9ca3-3daa9b1ab076",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asnzs1170",
+                    "seismic"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"latitude\": -33.8688,\n  \"longitude\": 151.2093,\n  \"h\": 15,\n  \"units\": \"metric\",\n  \"advancedDetection\": true,\n  \"googleApiKey\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "74a8d6e6-8eb9-4088-94a6-c6f6df074d26",
+      "name": "Combined Hazard",
+      "description": {
+        "content": "Multi-hazard combined analysis returning all available parameters for a site",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "16298803-ffbd-4eea-aed0-e64ebf357273",
+          "name": "Get Combined Hazard Analysis",
+          "request": {
+            "name": "Get Combined Hazard Analysis",
+            "description": {
+              "content": "Returns all available hazard parameters (wind, snow, ice, seismic) for a given site in a single request. Recommended for comprehensive site assessments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "asnzs1170",
+                "combined"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "apiKey",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "latitude",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "longitude",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "h",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "units",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "advancedDetection",
+                  "value": "true"
+                },
+                {
+                  "disabled": false,
+                  "key": "googleApiKey",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e5b8b26a-97bb-4988-947b-74740e824158",
+              "name": "Combined multi-hazard analysis results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asnzs1170",
+                    "combined"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "h",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "units",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "advancedDetection",
+                      "value": "true"
+                    },
+                    {
+                      "key": "googleApiKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"latitude\": 2586.675681583843,\n  \"longitude\": 402.25117627081806,\n  \"country\": \"string\",\n  \"wind\": {\n    \"region\": \"A0\",\n    \"class\": \"N1\",\n    \"criticalDirection\": \"N\",\n    \"terrainCategory\": {\n      \"key_0\": \"string\"\n    },\n    \"topographicClass\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"shieldingClass\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\",\n      \"key_3\": \"string\"\n    },\n    \"windSpeed\": 3301.011154434882,\n    \"standard\": \"AS/NZS 1170.2-2021\"\n  },\n  \"snow\": {\n    \"snowRegion\": \"string\",\n    \"snowElevationClass\": \"string\",\n    \"snowGroundLoad\": 5553.442828475105,\n    \"iceRegion\": \"string\",\n    \"standard\": \"string\"\n  },\n  \"ice\": {\n    \"snowRegion\": \"string\",\n    \"snowElevationClass\": \"string\",\n    \"snowGroundLoad\": 4548.932504696109,\n    \"iceRegion\": \"string\",\n    \"standard\": \"string\"\n  },\n  \"seismic\": {\n    \"hazardClass\": \"string\",\n    \"siteClass\": \"string\",\n    \"kp\": 8188.749617779163,\n    \"standard\": \"string\"\n  },\n  \"creditsUsed\": 8261\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "43ca919f-cf7e-41a6-b8e4-553637c5b5c0",
+              "name": "Invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asnzs1170",
+                    "combined"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "h",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "units",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "advancedDetection",
+                      "value": "true"
+                    },
+                    {
+                      "key": "googleApiKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "99055871-a62b-4a46-a2fb-d0635f4b544e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asnzs1170",
+                    "combined"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "h",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "units",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "advancedDetection",
+                      "value": "true"
+                    },
+                    {
+                      "key": "googleApiKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e2521341-fb95-4aa1-8208-ceb901a34e5f",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asnzs1170",
+                    "combined"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "h",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "units",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "advancedDetection",
+                      "value": "true"
+                    },
+                    {
+                      "key": "googleApiKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6645d02-f612-4ed2-b4d6-92f152c7bfc3",
+          "name": "Post Combined Hazard Analysis",
+          "request": {
+            "name": "Post Combined Hazard Analysis",
+            "description": {
+              "content": "Returns all hazard parameters for a site via POST.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "asnzs1170",
+                "combined"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"latitude\": \"<double>\",\n  \"longitude\": \"<double>\",\n  \"h\": \"<double>\",\n  \"units\": \"metric\",\n  \"advancedDetection\": true,\n  \"googleApiKey\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "edea72cd-7785-477c-9b9c-9d1291a648b6",
+              "name": "Combined multi-hazard analysis results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asnzs1170",
+                    "combined"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"latitude\": -33.8688,\n  \"longitude\": 151.2093,\n  \"h\": 15,\n  \"units\": \"metric\",\n  \"advancedDetection\": true,\n  \"googleApiKey\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"latitude\": 2586.675681583843,\n  \"longitude\": 402.25117627081806,\n  \"country\": \"string\",\n  \"wind\": {\n    \"region\": \"A0\",\n    \"class\": \"N1\",\n    \"criticalDirection\": \"N\",\n    \"terrainCategory\": {\n      \"key_0\": \"string\"\n    },\n    \"topographicClass\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"shieldingClass\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\",\n      \"key_3\": \"string\"\n    },\n    \"windSpeed\": 3301.011154434882,\n    \"standard\": \"AS/NZS 1170.2-2021\"\n  },\n  \"snow\": {\n    \"snowRegion\": \"string\",\n    \"snowElevationClass\": \"string\",\n    \"snowGroundLoad\": 5553.442828475105,\n    \"iceRegion\": \"string\",\n    \"standard\": \"string\"\n  },\n  \"ice\": {\n    \"snowRegion\": \"string\",\n    \"snowElevationClass\": \"string\",\n    \"snowGroundLoad\": 4548.932504696109,\n    \"iceRegion\": \"string\",\n    \"standard\": \"string\"\n  },\n  \"seismic\": {\n    \"hazardClass\": \"string\",\n    \"siteClass\": \"string\",\n    \"kp\": 8188.749617779163,\n    \"standard\": \"string\"\n  },\n  \"creditsUsed\": 8261\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64d4bd4d-5818-4797-9d8a-2494059b9493",
+              "name": "Invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asnzs1170",
+                    "combined"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"latitude\": -33.8688,\n  \"longitude\": 151.2093,\n  \"h\": 15,\n  \"units\": \"metric\",\n  \"advancedDetection\": true,\n  \"googleApiKey\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "03f02b64-c872-4ab6-85ac-c49264697234",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asnzs1170",
+                    "combined"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"latitude\": -33.8688,\n  \"longitude\": 151.2093,\n  \"h\": 15,\n  \"units\": \"metric\",\n  \"advancedDetection\": true,\n  \"googleApiKey\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.revolutio.com.au",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "apiKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3e6e4c34-6286-4538-be65-bbcfc16e17f4",
+    "name": "Revolutio Hazard API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Revolutio Hazard API (formerly CHECKWIND.API) provides site-specific structural engineering hazard parameters for wind, snow, ice, and seismic analysis. Trusted by over 750 companies across construction, fabrication, power distribution, signage, structural engineering, and telecommunications, the API returns location-based load parameters according to international standards including AS/NZS 1170.2, AS 4055, ASCE 7, and others across 40+ countries in Oceania, Asia, the Middle East, North America, South America, and Europe.\n\nContact Support:\n Email: support@revolutio.com.au",
+      "type": "text/plain"
+    }
+  }
+}
