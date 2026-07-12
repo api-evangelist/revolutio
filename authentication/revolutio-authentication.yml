@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/revolutio-hazard-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - query
+schemes:
+- name: HazardApiKey
+  type: apiKey
+  in: query
+  parameter: apiKey
+  description: Revolutio Hazard API subscription key. For POST requests pass in request header.
+  sources:
+  - openapi/revolutio-hazard-api-openapi.yml
