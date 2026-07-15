@@ -77,6 +77,8 @@ solutions:
   - name: Structural Engineering Software Integration
     description: Embed site-specific hazard parameters directly into engineering calculation workflows
 common:
+  - type: AgenticAccess
+    url: agentic-access/revolutio-agentic-access.yml
   - type: DomainSecurity
     url: security/revolutio-domain-security.yml
   - type: Authentication
