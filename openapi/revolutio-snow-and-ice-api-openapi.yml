@@ -1,0 +1,152 @@
+openapi: 3.0.3
+info:
+  title: Revolutio Hazard Combined Hazard Snow And Ice API
+  description: The Revolutio Hazard API (formerly CHECKWIND.API) provides site-specific structural engineering hazard parameters for wind, snow, ice, and seismic analysis. Trusted by over 750 companies across construction, fabrication, power distribution, signage, structural engineering, and telecommunications, the API returns location-based load parameters according to international standards including AS/NZS 1170.2, AS 4055, ASCE 7, and others across 40+ countries in Oceania, Asia, the Middle East, North America, South America, and Europe.
+  version: 4.0.0
+  contact:
+    url: https://www.revolutio.com.au/
+    email: support@revolutio.com.au
+  license:
+    name: Commercial
+    url: https://www.revolutio.com.au/software/hazardapi/
+servers:
+- url: https://api.revolutio.com.au
+  description: Production
+security:
+- HazardApiKey: []
+tags:
+- name: Snow And Ice
+  description: Snow and ice loading parameters per applicable standards
+paths:
+  /asnzs1170/snow:
+    get:
+      operationId: getSnowHazardGet
+      summary: Get Snow Hazard Analysis
+      description: Returns site-specific snow and ice loading parameters for the specified coordinates according to applicable standards.
+      tags:
+      - Snow And Ice
+      parameters:
+      - name: apiKey
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: latitude
+        in: query
+        required: true
+        schema:
+          type: number
+      - name: longitude
+        in: query
+        required: true
+        schema:
+          type: number
+      - name: h
+        in: query
+        required: false
+        schema:
+          type: number
+      - name: units
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - metric
+          - imperial
+      responses:
+        '200':
+          description: Snow and ice hazard analysis results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnowIceResult'
+        '400':
+          description: Invalid parameters
+        '401':
+          description: Unauthorized
+    post:
+      operationId: getSnowHazardPost
+      summary: Post Snow Hazard Analysis
+      description: Returns site-specific snow and ice loading parameters via POST.
+      tags:
+      - Snow And Ice
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SiteCoordinates'
+      responses:
+        '200':
+          description: Snow and ice hazard results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnowIceResult'
+        '400':
+          description: Invalid parameters
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    SnowIceResult:
+      type: object
+      properties:
+        snowRegion:
+          type: string
+          description: Snow region classification
+        snowElevationClass:
+          type: string
+          description: Snow elevation class
+        snowGroundLoad:
+          type: number
+          format: double
+          description: Snow ground load in kPa
+        iceRegion:
+          type: string
+          description: Ice region classification
+        standard:
+          type: string
+          description: Applied design standard
+    SiteCoordinates:
+      type: object
+      required:
+      - latitude
+      - longitude
+      properties:
+        latitude:
+          type: number
+          format: double
+          description: Site latitude in decimal degrees
+          example: -33.8688
+        longitude:
+          type: number
+          format: double
+          description: Site longitude in decimal degrees
+          example: 151.2093
+        h:
+          type: number
+          format: double
+          description: Structure height above ground in metres (optional; omit for faster response)
+          example: 15.0
+        units:
+          type: string
+          enum:
+          - metric
+          - imperial
+          default: metric
+          description: Output units (metric or imperial)
+        advancedDetection:
+          type: boolean
+          default: true
+          description: Use machine learning terrain/exposure detection algorithm
+        googleApiKey:
+          type: string
+          description: Optional Google API key for elevation/geocoding data source
+  securitySchemes:
+    HazardApiKey:
+      type: apiKey
+      in: query
+      name: apiKey
+      description: Revolutio Hazard API subscription key. For POST requests pass in request header.
