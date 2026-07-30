@@ -7,7 +7,20 @@ description: >-
   signage, structural engineering, and telecommunications. It covers 40+ countries and supports standards including
   AS/NZS 1170.2, AS 4055, and ASCE 7.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/revolutio.png
 tags:
   - Engineering
   - Hazard
@@ -20,35 +33,62 @@ created: '2025-02-17'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: revolutio:revolutio-hazard-api
-    name: Revolutio Hazard API
-    description: >-
-      The Revolutio Hazard API (formerly CHECKWIND.API) v4 provides site-specific wind, snow, ice, and seismic hazard
-      parameters for structural engineering. Given a latitude/longitude and optional structure height, the API returns
-      design parameters per AS/NZS 1170.2, AS 4055, ASCE 7, and other international standards. Uses a credit-based
-      subscription model where only successful requests consume credits.
-    humanURL: https://www.revolutio.com.au/software/hazardapi/
-    baseURL: https://api.revolutio.com.au
-    tags:
-      - Wind Analysis
-      - Snow Loading
-      - Seismic
-      - Structural Engineering
-      - Hazard API
-      - AS/NZS 1170
-      - ASCE 7
-    properties:
-      - type: Documentation
-        url: https://www.revolutio.com.au/support/hazardapi/
-      - type: OpenAPI
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/revolutio/refs/heads/main/openapi/revolutio-hazard-api-openapi.yml
-      - type: Swagger
-        url: https://api.revolutio.com.au/swagger/index.html
-    contact:
-      - FN: Revolutio Support
-        url: https://www.revolutio.com.au/
-        email: support@revolutio.com.au
+- aid: revolutio:revolutio-combined-hazard-api
+  name: Revolutio Combined Hazard API
+  description: Multi-hazard combined analysis returning all available parameters for a site
+  humanURL: https://www.revolutio.com.au/software/hazardapi/
+  baseURL: https://api.revolutio.com.au
+  tags:
+  - Combined Hazard
+  properties:
+  - type: OpenAPI
+    url: openapi/revolutio-combined-hazard-api-openapi.yml
+  - type: Documentation
+    url: https://www.revolutio.com.au/support/hazardapi/
+  - type: Swagger
+    url: https://api.revolutio.com.au/swagger/index.html
+- aid: revolutio:revolutio-seismic-api
+  name: Revolutio Seismic API
+  description: Seismic hazard parameters
+  humanURL: https://www.revolutio.com.au/software/hazardapi/
+  baseURL: https://api.revolutio.com.au
+  tags:
+  - Seismic
+  properties:
+  - type: OpenAPI
+    url: openapi/revolutio-seismic-api-openapi.yml
+  - type: Documentation
+    url: https://www.revolutio.com.au/support/hazardapi/
+  - type: Swagger
+    url: https://api.revolutio.com.au/swagger/index.html
+- aid: revolutio:revolutio-snow-and-ice-api
+  name: Revolutio Snow And Ice API
+  description: Snow and ice loading parameters per applicable standards
+  humanURL: https://www.revolutio.com.au/software/hazardapi/
+  baseURL: https://api.revolutio.com.au
+  tags:
+  - Snow And Ice
+  properties:
+  - type: OpenAPI
+    url: openapi/revolutio-snow-and-ice-api-openapi.yml
+  - type: Documentation
+    url: https://www.revolutio.com.au/support/hazardapi/
+  - type: Swagger
+    url: https://api.revolutio.com.au/swagger/index.html
+- aid: revolutio:revolutio-wind-api
+  name: Revolutio Wind API
+  description: Site-specific wind hazard analysis per AS/NZS 1170.2 and ASCE 7 standards
+  humanURL: https://www.revolutio.com.au/software/hazardapi/
+  baseURL: https://api.revolutio.com.au
+  tags:
+  - Wind
+  properties:
+  - type: OpenAPI
+    url: openapi/revolutio-wind-api-openapi.yml
+  - type: Documentation
+    url: https://www.revolutio.com.au/support/hazardapi/
+  - type: Swagger
+    url: https://api.revolutio.com.au/swagger/index.html
 features:
   - name: Wind Analysis
     description: Site-specific wind region, terrain category, topographic class, and shielding class detection
