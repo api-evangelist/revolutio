@@ -1,0 +1,20 @@
+{
+  "provider": "revolutio",
+  "sources": [
+    "revolutio-combined-hazard-api-openapi.yml",
+    "revolutio-seismic-api-openapi.yml",
+    "revolutio-snow-and-ice-api-openapi.yml",
+    "revolutio-wind-api-openapi.yml"
+  ],
+  "outputs": [
+    "revolutio-combined-hazard-api-openapi.yml",
+    "revolutio-seismic-api-openapi.yml",
+    "revolutio-snow-and-ice-api-openapi.yml",
+    "revolutio-wind-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
