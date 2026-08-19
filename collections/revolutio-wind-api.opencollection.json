@@ -1,0 +1,96 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Revolutio Hazard Combined Hazard Wind API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apiKey",
+      "value": "{{apiKey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Wind",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Wind Hazard Analysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.revolutio.com.au/asnzs1170/wind",
+            "params": [
+              {
+                "name": "apiKey",
+                "value": "",
+                "type": "query",
+                "description": "Your Revolutio Hazard API subscription key"
+              },
+              {
+                "name": "latitude",
+                "value": "",
+                "type": "query",
+                "description": "Site latitude in decimal degrees"
+              },
+              {
+                "name": "longitude",
+                "value": "",
+                "type": "query",
+                "description": "Site longitude in decimal degrees"
+              },
+              {
+                "name": "h",
+                "value": "",
+                "type": "query",
+                "description": "Structure height in metres"
+              },
+              {
+                "name": "units",
+                "value": "",
+                "type": "query",
+                "description": "Output unit system"
+              },
+              {
+                "name": "advancedDetection",
+                "value": "",
+                "type": "query",
+                "description": "Enable ML-based terrain detection"
+              },
+              {
+                "name": "googleApiKey",
+                "value": "",
+                "type": "query",
+                "description": "Optional Google API key for elevation data"
+              }
+            ]
+          },
+          "docs": "Returns site-specific wind hazard parameters according to AS/NZS 1170.2 for the specified coordinates. API key must be included as a query parameter."
+        },
+        {
+          "info": {
+            "name": "Post Wind Hazard Analysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.revolutio.com.au/asnzs1170/wind",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns site-specific wind hazard parameters. POST method allows passing the API key in the request header for better security."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

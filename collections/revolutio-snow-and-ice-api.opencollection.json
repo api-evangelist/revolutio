@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Revolutio Hazard Combined Hazard Snow And Ice API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apiKey",
+      "value": "{{apiKey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Snow And Ice",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Snow Hazard Analysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.revolutio.com.au/asnzs1170/snow",
+            "params": [
+              {
+                "name": "apiKey",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "latitude",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "longitude",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "h",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "units",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns site-specific snow and ice loading parameters for the specified coordinates according to applicable standards."
+        },
+        {
+          "info": {
+            "name": "Post Snow Hazard Analysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.revolutio.com.au/asnzs1170/snow",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns site-specific snow and ice loading parameters via POST."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

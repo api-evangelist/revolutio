@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Revolutio Hazard Combined Hazard Seismic API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apiKey",
+      "value": "{{apiKey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Seismic",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Seismic Hazard Analysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.revolutio.com.au/asnzs1170/seismic",
+            "params": [
+              {
+                "name": "apiKey",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "latitude",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "longitude",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "units",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns site-specific seismic hazard parameters for the specified coordinates."
+        },
+        {
+          "info": {
+            "name": "Post Seismic Hazard Analysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.revolutio.com.au/asnzs1170/seismic",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns seismic hazard parameters via POST."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Revolutio Hazard Combined Hazard API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apiKey",
+      "value": "{{apiKey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Combined Hazard",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Combined Hazard Analysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.revolutio.com.au/asnzs1170/combined",
+            "params": [
+              {
+                "name": "apiKey",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "latitude",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "longitude",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "h",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "units",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "advancedDetection",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "googleApiKey",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns all available hazard parameters (wind, snow, ice, seismic) for a given site in a single request. Recommended for comprehensive site assessments."
+        },
+        {
+          "info": {
+            "name": "Post Combined Hazard Analysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.revolutio.com.au/asnzs1170/combined",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns all hazard parameters for a site via POST."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
