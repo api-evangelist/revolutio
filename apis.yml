@@ -7,6 +7,17 @@ description: >-
   signage, structural engineering, and telecommunications. It covers 40+ countries and supports standards including
   AS/NZS 1170.2, AS 4055, and ASCE 7.
 type: Index
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
