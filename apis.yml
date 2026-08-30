@@ -128,6 +128,9 @@ solutions:
   - name: Structural Engineering Software Integration
     description: Embed site-specific hazard parameters directly into engineering calculation workflows
 common:
+  - type: CapabilityMap
+    url: capabilities/revolutio-capability-edges.yml
+    name: Revolutio Business Capability Map
   - type: AgenticAccess
     url: agentic-access/revolutio-agentic-access.yml
   - type: DomainSecurity

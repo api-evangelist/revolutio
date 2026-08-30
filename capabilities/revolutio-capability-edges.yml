@@ -1,0 +1,57 @@
+slug: revolutio
+provider: Revolutio
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Engineering Services
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Combined Hazard
+  spec_file: revolutio-combined-hazard-api-openapi.yml
+  capability_id: BC-1100.30
+  capability_id_l1: BC-1100
+  capability_name: Civil & Structural Engineering Management
+  confidence: 0.75
+  evidence: '"Get Combined Hazard Analysis" returning CombinedHazardResult, WindAnalysisResult, SnowIceResult,
+    SeismicResult for SiteCoordinates — "site-specific structural engineering hazard parameters ... according
+    to ... AS/NZS 1170.2, ASCE 7"'
+  reason: Operations return site-specific structural load parameters (wind/snow/ice/seismic) used as design
+    inputs for structures, which maps to civil & structural engineering; some ambiguity as it could equally
+    be framed as a design input service.
+- tag: Seismic
+  spec_file: revolutio-seismic-api-openapi.yml
+  capability_id: BC-1100.30
+  capability_id_l1: BC-1100
+  capability_name: Civil & Structural Engineering Management
+  confidence: 0.75
+  evidence: '"Get Seismic Hazard Analysis" with schemas SeismicResult, SiteCoordinates; description: "site-specific
+    structural engineering hazard parameters for ... seismic analysis"'
+  reason: Seismic load parameters per site coordinates are structural/geotechnical engineering design
+    data, mapping to civil & structural engineering management.
+- tag: Snow And Ice
+  spec_file: revolutio-snow-and-ice-api-openapi.yml
+  capability_id: BC-1100.30
+  capability_id_l1: BC-1100
+  capability_name: Civil & Structural Engineering Management
+  confidence: 0.75
+  evidence: '"Get Snow Hazard Analysis" returning SnowIceResult for SiteCoordinates; "returns location-based
+    load parameters according to international standards including AS/NZS 1170.2"'
+  reason: Snow/ice load parameters are structural design loads for buildings and structures, so the structural
+    engineering discipline capability is the honest fit.
+- tag: Wind
+  spec_file: revolutio-wind-api-openapi.yml
+  capability_id: BC-1100.30
+  capability_id_l1: BC-1100
+  capability_name: Civil & Structural Engineering Management
+  confidence: 0.75
+  evidence: '"Get Wind Hazard Analysis" with schema WindAnalysisResult, SiteCoordinates; "site-specific
+    structural engineering hazard parameters for wind ... analysis"'
+  reason: Wind load analysis parameters per site are structural engineering design inputs, mapping to
+    civil & structural engineering management.
