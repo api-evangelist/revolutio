@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Revolutio Hazard Combined Hazard API
-  description: The Revolutio Hazard API (formerly CHECKWIND.API) provides site-specific structural engineering hazard parameters for wind, snow, ice, and seismic analysis. Trusted by over 750 companies across construction, fabrication, power distribution, signage, structural engineering, and telecommunications, the API returns location-based load parameters according to international standards including AS/NZS 1170.2, AS 4055, ASCE 7, and others across 40+ countries in Oceania, Asia, the Middle East, North America, South America, and Europe.
+  description: The Revolutio Hazard API (formerly CHECKWIND.API) provides site-specific structural engineering hazard parameters for wind, snow, ice, and seismic analysis.
   version: 4.0.0
   contact:
     url: https://www.revolutio.com.au/
@@ -138,22 +138,44 @@ components:
         googleApiKey:
           type: string
           description: Optional Google API key for elevation/geocoding data source
-    SeismicResult:
+    WindAnalysisResult:
       type: object
       properties:
-        hazardClass:
+        region:
           type: string
-          description: Seismic hazard class
-        siteClass:
+          description: Wind region classification
+          example: A0
+        class:
           type: string
-          description: Site subsoil class
-        kp:
+          description: Site wind class
+          example: N1
+        criticalDirection:
+          type: string
+          description: Critical wind direction
+          example: N
+        terrainCategory:
+          type: object
+          description: Directional terrain category results
+          additionalProperties:
+            type: string
+        topographicClass:
+          type: object
+          description: Directional topographic classification
+          additionalProperties:
+            type: string
+        shieldingClass:
+          type: object
+          description: Directional shielding classification
+          additionalProperties:
+            type: string
+        windSpeed:
           type: number
           format: double
-          description: Probability factor
+          description: Design wind speed in m/s (or mph if imperial)
         standard:
           type: string
           description: Applied design standard
+          example: AS/NZS 1170.2-2021
     SnowIceResult:
       type: object
       properties:
@@ -195,44 +217,22 @@ components:
         creditsUsed:
           type: integer
           description: Number of API credits consumed by this request
-    WindAnalysisResult:
+    SeismicResult:
       type: object
       properties:
-        region:
+        hazardClass:
           type: string
-          description: Wind region classification
-          example: A0
-        class:
+          description: Seismic hazard class
+        siteClass:
           type: string
-          description: Site wind class
-          example: N1
-        criticalDirection:
-          type: string
-          description: Critical wind direction
-          example: N
-        terrainCategory:
-          type: object
-          description: Directional terrain category results
-          additionalProperties:
-            type: string
-        topographicClass:
-          type: object
-          description: Directional topographic classification
-          additionalProperties:
-            type: string
-        shieldingClass:
-          type: object
-          description: Directional shielding classification
-          additionalProperties:
-            type: string
-        windSpeed:
+          description: Site subsoil class
+        kp:
           type: number
           format: double
-          description: Design wind speed in m/s (or mph if imperial)
+          description: Probability factor
         standard:
           type: string
           description: Applied design standard
-          example: AS/NZS 1170.2-2021
   securitySchemes:
     HazardApiKey:
       type: apiKey

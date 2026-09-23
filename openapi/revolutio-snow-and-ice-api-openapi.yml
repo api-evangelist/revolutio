@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Revolutio Hazard Combined Hazard Snow And Ice API
-  description: The Revolutio Hazard API (formerly CHECKWIND.API) provides site-specific structural engineering hazard parameters for wind, snow, ice, and seismic analysis. Trusted by over 750 companies across construction, fabrication, power distribution, signage, structural engineering, and telecommunications, the API returns location-based load parameters according to international standards including AS/NZS 1170.2, AS 4055, ASCE 7, and others across 40+ countries in Oceania, Asia, the Middle East, North America, South America, and Europe.
+  title: Revolutio Hazard Snow And Ice API
+  description: The Revolutio Hazard API (formerly CHECKWIND.API) provides site-specific structural engineering hazard parameters for wind, snow, ice, and seismic analysis.
   version: 4.0.0
   contact:
     url: https://www.revolutio.com.au/
@@ -90,25 +90,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    SnowIceResult:
-      type: object
-      properties:
-        snowRegion:
-          type: string
-          description: Snow region classification
-        snowElevationClass:
-          type: string
-          description: Snow elevation class
-        snowGroundLoad:
-          type: number
-          format: double
-          description: Snow ground load in kPa
-        iceRegion:
-          type: string
-          description: Ice region classification
-        standard:
-          type: string
-          description: Applied design standard
     SiteCoordinates:
       type: object
       required:
@@ -144,6 +125,25 @@ components:
         googleApiKey:
           type: string
           description: Optional Google API key for elevation/geocoding data source
+    SnowIceResult:
+      type: object
+      properties:
+        snowRegion:
+          type: string
+          description: Snow region classification
+        snowElevationClass:
+          type: string
+          description: Snow elevation class
+        snowGroundLoad:
+          type: number
+          format: double
+          description: Snow ground load in kPa
+        iceRegion:
+          type: string
+          description: Ice region classification
+        standard:
+          type: string
+          description: Applied design standard
   securitySchemes:
     HazardApiKey:
       type: apiKey
