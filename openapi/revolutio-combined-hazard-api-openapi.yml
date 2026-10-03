@@ -103,98 +103,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    CombinedHazardResult:
-      type: object
-      properties:
-        latitude:
-          type: number
-          format: double
-        longitude:
-          type: number
-          format: double
-        country:
-          type: string
-        wind:
-          $ref: '#/components/schemas/WindAnalysisResult'
-        snow:
-          $ref: '#/components/schemas/SnowIceResult'
-        ice:
-          $ref: '#/components/schemas/SnowIceResult'
-        seismic:
-          $ref: '#/components/schemas/SeismicResult'
-        creditsUsed:
-          type: integer
-          description: Number of API credits consumed by this request
-    SnowIceResult:
-      type: object
-      properties:
-        snowRegion:
-          type: string
-          description: Snow region classification
-        snowElevationClass:
-          type: string
-          description: Snow elevation class
-        snowGroundLoad:
-          type: number
-          format: double
-          description: Snow ground load in kPa
-        iceRegion:
-          type: string
-          description: Ice region classification
-        standard:
-          type: string
-          description: Applied design standard
-    SiteCoordinates:
-      type: object
-      required:
-      - latitude
-      - longitude
-      properties:
-        latitude:
-          type: number
-          format: double
-          description: Site latitude in decimal degrees
-          example: -33.8688
-        longitude:
-          type: number
-          format: double
-          description: Site longitude in decimal degrees
-          example: 151.2093
-        h:
-          type: number
-          format: double
-          description: Structure height above ground in metres (optional; omit for faster response)
-          example: 15.0
-        units:
-          type: string
-          enum:
-          - metric
-          - imperial
-          default: metric
-          description: Output units (metric or imperial)
-        advancedDetection:
-          type: boolean
-          default: true
-          description: Use machine learning terrain/exposure detection algorithm
-        googleApiKey:
-          type: string
-          description: Optional Google API key for elevation/geocoding data source
-    SeismicResult:
-      type: object
-      properties:
-        hazardClass:
-          type: string
-          description: Seismic hazard class
-        siteClass:
-          type: string
-          description: Site subsoil class
-        kp:
-          type: number
-          format: double
-          description: Probability factor
-        standard:
-          type: string
-          description: Applied design standard
     WindAnalysisResult:
       type: object
       properties:
@@ -233,6 +141,98 @@ components:
           type: string
           description: Applied design standard
           example: AS/NZS 1170.2-2021
+    SiteCoordinates:
+      type: object
+      required:
+      - latitude
+      - longitude
+      properties:
+        latitude:
+          type: number
+          format: double
+          description: Site latitude in decimal degrees
+          example: -33.8688
+        longitude:
+          type: number
+          format: double
+          description: Site longitude in decimal degrees
+          example: 151.2093
+        h:
+          type: number
+          format: double
+          description: Structure height above ground in metres (optional; omit for faster response)
+          example: 15.0
+        units:
+          type: string
+          enum:
+          - metric
+          - imperial
+          default: metric
+          description: Output units (metric or imperial)
+        advancedDetection:
+          type: boolean
+          default: true
+          description: Use machine learning terrain/exposure detection algorithm
+        googleApiKey:
+          type: string
+          description: Optional Google API key for elevation/geocoding data source
+    CombinedHazardResult:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        country:
+          type: string
+        wind:
+          $ref: '#/components/schemas/WindAnalysisResult'
+        snow:
+          $ref: '#/components/schemas/SnowIceResult'
+        ice:
+          $ref: '#/components/schemas/SnowIceResult'
+        seismic:
+          $ref: '#/components/schemas/SeismicResult'
+        creditsUsed:
+          type: integer
+          description: Number of API credits consumed by this request
+    SeismicResult:
+      type: object
+      properties:
+        hazardClass:
+          type: string
+          description: Seismic hazard class
+        siteClass:
+          type: string
+          description: Site subsoil class
+        kp:
+          type: number
+          format: double
+          description: Probability factor
+        standard:
+          type: string
+          description: Applied design standard
+    SnowIceResult:
+      type: object
+      properties:
+        snowRegion:
+          type: string
+          description: Snow region classification
+        snowElevationClass:
+          type: string
+          description: Snow elevation class
+        snowGroundLoad:
+          type: number
+          format: double
+          description: Snow ground load in kPa
+        iceRegion:
+          type: string
+          description: Ice region classification
+        standard:
+          type: string
+          description: Applied design standard
   securitySchemes:
     HazardApiKey:
       type: apiKey
