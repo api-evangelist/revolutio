@@ -85,6 +85,22 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    SeismicResult:
+      type: object
+      properties:
+        hazardClass:
+          type: string
+          description: Seismic hazard class
+        siteClass:
+          type: string
+          description: Site subsoil class
+        kp:
+          type: number
+          format: double
+          description: Probability factor
+        standard:
+          type: string
+          description: Applied design standard
     SiteCoordinates:
       type: object
       required:
@@ -120,22 +136,6 @@ components:
         googleApiKey:
           type: string
           description: Optional Google API key for elevation/geocoding data source
-    SeismicResult:
-      type: object
-      properties:
-        hazardClass:
-          type: string
-          description: Seismic hazard class
-        siteClass:
-          type: string
-          description: Site subsoil class
-        kp:
-          type: number
-          format: double
-          description: Probability factor
-        standard:
-          type: string
-          description: Applied design standard
   securitySchemes:
     HazardApiKey:
       type: apiKey

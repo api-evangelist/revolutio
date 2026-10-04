@@ -103,6 +103,28 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    CombinedHazardResult:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        country:
+          type: string
+        wind:
+          $ref: '#/components/schemas/WindAnalysisResult'
+        snow:
+          $ref: '#/components/schemas/SnowIceResult'
+        ice:
+          $ref: '#/components/schemas/SnowIceResult'
+        seismic:
+          $ref: '#/components/schemas/SeismicResult'
+        creditsUsed:
+          type: integer
+          description: Number of API credits consumed by this request
     WindAnalysisResult:
       type: object
       properties:
@@ -176,28 +198,6 @@ components:
         googleApiKey:
           type: string
           description: Optional Google API key for elevation/geocoding data source
-    CombinedHazardResult:
-      type: object
-      properties:
-        latitude:
-          type: number
-          format: double
-        longitude:
-          type: number
-          format: double
-        country:
-          type: string
-        wind:
-          $ref: '#/components/schemas/WindAnalysisResult'
-        snow:
-          $ref: '#/components/schemas/SnowIceResult'
-        ice:
-          $ref: '#/components/schemas/SnowIceResult'
-        seismic:
-          $ref: '#/components/schemas/SeismicResult'
-        creditsUsed:
-          type: integer
-          description: Number of API credits consumed by this request
     SeismicResult:
       type: object
       properties:

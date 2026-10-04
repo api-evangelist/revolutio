@@ -115,6 +115,15 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
     SiteCoordinates:
       type: object
       required:
@@ -150,15 +159,6 @@ components:
         googleApiKey:
           type: string
           description: Optional Google API key for elevation/geocoding data source
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        code:
-          type: integer
     WindAnalysisResult:
       type: object
       properties:
