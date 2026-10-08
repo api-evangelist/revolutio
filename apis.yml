@@ -129,6 +129,12 @@ solutions:
   - name: Structural Engineering Software Integration
     description: Embed site-specific hazard parameters directly into engineering calculation workflows
 common:
+  - type: Plans
+    url: plans/revolutio-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/revolutio-rate-limits.yml
+  - type: FinOps
+    url: finops/revolutio-finops.yml
   - type: CapabilityMap
     url: capabilities/revolutio-capability-edges.yml
     name: Revolutio Business Capability Map
