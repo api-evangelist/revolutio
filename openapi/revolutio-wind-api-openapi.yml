@@ -115,50 +115,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        code:
-          type: integer
-    SiteCoordinates:
-      type: object
-      required:
-      - latitude
-      - longitude
-      properties:
-        latitude:
-          type: number
-          format: double
-          description: Site latitude in decimal degrees
-          example: -33.8688
-        longitude:
-          type: number
-          format: double
-          description: Site longitude in decimal degrees
-          example: 151.2093
-        h:
-          type: number
-          format: double
-          description: Structure height above ground in metres (optional; omit for faster response)
-          example: 15.0
-        units:
-          type: string
-          enum:
-          - metric
-          - imperial
-          default: metric
-          description: Output units (metric or imperial)
-        advancedDetection:
-          type: boolean
-          default: true
-          description: Use machine learning terrain/exposure detection algorithm
-        googleApiKey:
-          type: string
-          description: Optional Google API key for elevation/geocoding data source
     WindAnalysisResult:
       type: object
       properties:
@@ -197,6 +153,50 @@ components:
           type: string
           description: Applied design standard
           example: AS/NZS 1170.2-2021
+    SiteCoordinates:
+      type: object
+      required:
+      - latitude
+      - longitude
+      properties:
+        latitude:
+          type: number
+          format: double
+          description: Site latitude in decimal degrees
+          example: -33.8688
+        longitude:
+          type: number
+          format: double
+          description: Site longitude in decimal degrees
+          example: 151.2093
+        h:
+          type: number
+          format: double
+          description: Structure height above ground in metres (optional; omit for faster response)
+          example: 15.0
+        units:
+          type: string
+          enum:
+          - metric
+          - imperial
+          default: metric
+          description: Output units (metric or imperial)
+        advancedDetection:
+          type: boolean
+          default: true
+          description: Use machine learning terrain/exposure detection algorithm
+        googleApiKey:
+          type: string
+          description: Optional Google API key for elevation/geocoding data source
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
   securitySchemes:
     HazardApiKey:
       type: apiKey
